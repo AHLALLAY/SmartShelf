@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 SmartShelf
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Assigné par** : 👨‍💼 Houssni Ouchad  
+**Créé le** : 📅 08/03/25
 
-## About Laravel
+### 🔄 Développement d'une API REST pour la gestion des rayons d'un supermarché
+L'objectif est de créer une API REST permettant de gérer efficacement les stocks et les produits d'un supermarché à l'aide de **Laravel**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🏢 Situation professionnelle
+### 🚀 Modernisation des Applications Web avec Laravel et l'Intégration de REST APIs
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### 🎯 Besoin visé ou problème rencontré
+- 🔄 Modernisation des applications web existantes pour répondre aux besoins changeants du marché et des utilisateurs.
+- ⚙️ Intégration de nouvelles fonctionnalités via des REST APIs pour améliorer la performance et l'expérience utilisateur.
+- ⚠️ **Défi** : Migrer d'une architecture legacy à une architecture flexible tout en intégrant des services externes via des REST APIs.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🧠 Compétences visées
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🔍 **Définir le périmètre d'un problème rencontré en adoptant une démarche inductive afin de permettre la recherche de solution** : Niveau 3, transposer
+- 🔎 **Rechercher de façon méthodique une ou des solutions au problème rencontré afin de retenir une solution adaptée au contexte** : Niveau 3, transposer
+- 🤝 **Se familiariser avec les codes et la culture propres à son environnement professionnel afin d'y faciliter son intégration** : Niveau 3, transposer
+- 💻 **Installer et configurer son environnement de travail en fonction du projet web ou web mobile** : Niveau 3, transposer
+- 🗃️ **Mettre en place une base de données relationnelle** : Niveau 2, adapter
+- 📊 **Développer des composants d'accès aux données SQL et NoSQL** : Niveau 3, transposer
+- 🛠️ **Développer des composants métier coté serveur** : Niveau 3, transposer
+- 📝 **Documenter le déploiement d'une application dynamique web ou web mobile** : Niveau 1, imiter
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📋 Contexte du projet
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+L'objectif principal de ce projet est de développer une API REST pour gérer les rayons d'un supermarché. Chaque rayon contiendra plusieurs produits, avec une gestion des stocks et une mise à jour des quantités en temps réel.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 📚 USER STORIES
 
-## Contributing
+### 👤 **Utilisateur**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- En tant qu'utilisateur, je souhaite pouvoir m'authentifier sur l'API à l'aide de Laravel Sanctum.
 
-## Code of Conduct
+### 🛍️ **Clients**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- En tant que client, je souhaite consulter la liste des produits disponibles dans un rayon spécifique afin de savoir ce qui est en stock.
+- En tant que client, je veux pouvoir rechercher un produit par son nom ou sa catégorie pour trouver rapidement ce dont j'ai besoin.
+- En tant que client, je souhaite voir les produits populaires ou en promotion dans un rayon spécifique.
 
-## Security Vulnerabilities
+### 👨‍💼 **Administrateur**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- En tant qu'administrateur, je souhaite pouvoir ajouter, modifier ou supprimer des rayons dans le système pour gérer l'organisation du supermarché.
+- En tant qu'administrateur, je souhaite ajouter, modifier ou supprimer des produits dans un rayon afin d'assurer la gestion des stocks.
+- En tant qu'administrateur, je veux visualiser des statistiques sur les stocks (produits les plus vendus, niveaux de stock critiques).
+- En tant qu'administrateur, je souhaite recevoir une alerte lorsqu'un produit atteint un seuil bas pour anticiper le réapprovisionnement.
+- En tant que développeur, je veux une documentation détaillée de l'API, cette documentation sera créée à l'aide d'outils comme Postman, Swagger ou d'autres outils similaires.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⭐ EXTRA
+
+- 🔄 En tant que développeur, je souhaite que les stocks se mettent à jour automatiquement après chaque vente en utilisant les queues et les jobs de Laravel, sinon je pense à trouver d'autres solutions afin de satisfaire cette demande.
+- 🧪 Mise en place de tests unitaires (avec PHPUnit ou Pest) pour les fonctionnalités clés de l'API.
+
+---
+
+## 🎁 BONUS
+
+- 🐳 En tant que développeur, je peux utiliser **Laravel Sail** pour contenairiser l'application et simplifier le déploiement.
+- 📧 En tant qu'administrateur, je souhaite recevoir des notifications par email pour les stocks critiques.
+- 🔖 En tant qu'administrateur, je veux utiliser des **slugs** pour générer des URL lisibles des rayons et des produits.
+
+---
+
+## 📌 Modalités pédagogiques
+
+- 👤 **Travail** : individuel
+- ⏱️ **Durée de travail** : 5 jours
+- 🗓️ **Date de lancement du brief** : 10/03/2025 à 09:30
+- ⏰ **Date limite de soumission** : 14/03/2025 avant Minuit.
+
+---
+
+## 📊 Modalités d'évaluation
+
+Vous présenterez votre travail pendant une heure :
+- ⏱️ **5 minutes** : Démonstration de l'API sous Postman.
+- 🔍 **10 minutes** : Explication du code.
+- 🧠 **45 minutes** : Quizz : Questions/Réponses.
+
+---
+
+## 📦 Livrables
+
+Livrables à fournir avant **14/03/2025 à Minuit** :
+- 🔗 Lien vers le repository GitHub comprenant :
+  - 💾 Le code source complet du site web, incluant tous les fichiers nécessaires.
+
+---
+
+## 🏆 Critères de performance
+
+- 🔒 Sécurité de l'authentification.
+- ✅ Conformité aux politiques d'accès.
+- 💪 Fiabilité des opérations CRUD.
+- ⚠️ Gestion des erreurs.
+- ⚡ Temps de réponse de l'API.
+- 🧪 Testabilité.
+- 📚 Documentation claire et complète.
