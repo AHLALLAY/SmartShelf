@@ -32,5 +32,23 @@ class AuthController extends Controller
         }
     }
 
+    public function login(Request $request)
+    {
+        $validated_data = $request->validate([
+            'email' => ['required', 'string', 'unique:users,email', 'email', 'max:50'],
+            'password' => ['required', 'string', 'min:6'],
+        ]);
 
+        $user = User::where('email', $validated_data['email'])->first();
+
+        if ($user && Hash::check($validated_data['password'], $user->password)) {
+            return response()->json([
+                'message' => 'user connected !!!',
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Invalid credential',
+            ], 401);
+        }
+    }
 }
