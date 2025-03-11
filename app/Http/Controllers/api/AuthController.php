@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class AuthController extends Controller
 {
@@ -19,16 +20,24 @@ class AuthController extends Controller
         ]);
 
         $validated_data['password'] = Hash::make($validated_data['password']);
-
-        $user = User::create($validated_data);
-        if ($user) {
-            return response()->json([
-                'message' => 'User created successfully!'
-            ], 201);
+        $isExistUser = User::where('email', $validated_data['email'])->first();
+        if ($isExistUser) {
+            return Response()->json([
+                "message" => $validated_data['email'] . " already exist !!!!"
+            ]);
         } else {
-            return response()->json([
-                'message' => 'Unexpected error occurred.'
-            ], 500);
+            $user = User::create($validated_data);
+            if ($user) {
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return response()->json([
+                    'message' => 'the account for ' . explode('@', $validated_data['email'])[0] . ' created successfully !!!',
+                    'token' => $token
+                ], 201);
+            } else {
+                return response()->json([
+                    'message' => 'Unexpected error occurred.'
+                ], 500);
+            }
         }
     }
 
@@ -42,8 +51,11 @@ class AuthController extends Controller
         $user = User::where('email', $validated_data['email'])->first();
 
         if ($user && Hash::check($validated_data['password'], $user->password)) {
+            $token = $user->createToken('auth_token')->plainTextToken;
+            
             return response()->json([
-                'message' => 'user connected !!!',
+                'message' => explode('@', $user->email)[0] . ' connected !!!',
+                'access_token' => $token
             ], 200);
         } else {
             return response()->json([
