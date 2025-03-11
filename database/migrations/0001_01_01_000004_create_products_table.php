@@ -17,6 +17,8 @@ return new class extends Migration
             $table->decimal('price');
             $table->foreignId('departments_id')->constrained('departments')->onDelete('cascade');
             $table->boolean('hasDiscount')->default(false);
+            $table->integer('quantityInitiale');
+            $table->integer('quantitySales');
             $table->integer('quantityAvailable');
             $table->timestamps();
         });
