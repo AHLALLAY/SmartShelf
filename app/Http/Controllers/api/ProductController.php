@@ -102,4 +102,26 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
+    public function displayProductPopulare(){
+        try{
+            $popularProduct = Product::orderBy('quantitySales', 'desc')->limit(3)->get();
+
+            if($popularProduct->isEmpty()){
+                return response()->json([
+                    "message" => "no populare product foun !!!",
+                ], 404);
+            }else{
+                return response()->json([
+                    "posplare product" => $popularProduct,
+                ],200);
+            }
+        }catch(\Exception $e){
+            return  response()->json([
+                "message" => "Unexpected Error",
+                "Error" => $e->getMessage()
+            ], 500);
+        }
+
+    }
 }
