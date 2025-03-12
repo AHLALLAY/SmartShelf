@@ -13,3 +13,4 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::post('/product/create', [ProductController::class, 'createProduct'])->name('new-product');
+Route::get('/product/display/available', [ProductController::class, 'displayProductAvailable'])->name('available-product');
