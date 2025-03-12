@@ -16,3 +16,4 @@ Route::post('/product/create', [ProductController::class, 'createProduct'])->nam
 Route::get('/product/display/available', [ProductController::class, 'displayProductAvailable'])->name('available-product');
 Route::post('/product/sale/{id}', [ProductController::class, 'saleProduct']);
 Route::get('/product/display/populare', [ProductController::class, 'displayProductPopulare'])->name('populare-product');
+Route::get('/product/display/promotion', [ProductController::class, 'displayProductPromo'])->name('promotion-product');

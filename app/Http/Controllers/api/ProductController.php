@@ -46,7 +46,7 @@ class ProductController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'product available' => $productAvailable,
+                    'data' => $productAvailable,
                 ]);
             }
         } catch (\Exception $e) {
@@ -72,7 +72,7 @@ class ProductController extends Controller
 
             // Valider les données de la requête
             $validated_data = $request->validate([
-                'quantity' => ['required', 'integer', 'min:1', 'max:1000'], // Quantité valide
+                'quantity' => ['required', 'integer', 'min:1'],
             ]);
 
             // Calculer le stock restant après la vente
@@ -87,7 +87,7 @@ class ProductController extends Controller
             } else {
                 // Stock suffisant
                 $product->quantitySales += $validated_data['quantity'];
-                $product->quantityAvailable = $result; // Mettre à jour le stock disponible
+                $product->quantityAvailable = $result;
                 $product->save();
 
                 return response()->json([
@@ -103,25 +103,51 @@ class ProductController extends Controller
         }
     }
 
-    public function displayProductPopulare(){
-        try{
+    public function displayProductPopulare()
+    {
+        try {
             $popularProduct = Product::orderBy('quantitySales', 'desc')->limit(3)->get();
 
-            if($popularProduct->isEmpty()){
+            if ($popularProduct->isEmpty()) {
                 return response()->json([
                     "message" => "no populare product foun !!!",
                 ], 404);
-            }else{
+            } else {
                 return response()->json([
-                    "posplare product" => $popularProduct,
-                ],200);
+                    "data" => $popularProduct,
+                ], 200);
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return  response()->json([
                 "message" => "Unexpected Error",
                 "Error" => $e->getMessage()
             ], 500);
         }
+    }
 
+    public function displayProductPromo()
+    {
+        try {
+            // Récupérer les produits en promotion
+            $products = Product::where('hasDiscount', true)->get();
+
+            // Vérifier si des produits ont été trouvés
+            if ($products->isEmpty()) {
+                return response()->json([
+                    "message" => "Aucun produit en promotion trouvé."
+                ], 404);
+            }
+
+            // Retourner les produits en promotion
+            return response()->json([
+                "data" => $products
+            ], 200);
+        } catch (\Exception $e) {
+            // Gestion des erreurs inattendues
+            return response()->json([
+                "message" => "Une erreur inattendue s'est produite.",
+                "error" => $e->getMessage()
+            ], 500);
+        }
     }
 }
