@@ -33,4 +33,27 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
+    public function displayProductAvailable(){
+        try{
+
+            $productAvailable = Product::where('quantityAvailable', '>', 0)->get();
+            
+            if ($productAvailable->isEmpty()){
+                return response()->json([
+                    'message' => 'no product is available',
+                ],200);
+            }else{
+                return response()->json([
+                    'product available' => $productAvailable,
+                ]);
+            }
+        }catch(\Exception $e){
+            return response()->json([
+                'message' => 'unxpected error',
+                'error' => $e->getMessage(),
+            ],500);
+        }
+        
+    }
 }
