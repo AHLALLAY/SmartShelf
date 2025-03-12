@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price');
+            $table->decimal('price', 8, 2);
             $table->string('category');
             $table->boolean('hasDiscount')->default(false);
             $table->integer('quantityInitiale');
-            $table->integer('quantitySales');
-            $table->integer('quantityAvailable');
+            $table->integer('quantitySales')->default(0);
+            $table->integer('quantityAvailable')->default(0);
             $table->timestamps();
         });
     }
