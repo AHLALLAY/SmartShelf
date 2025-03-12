@@ -13,17 +13,24 @@ class ProductController extends Controller
     {
         $validated_data = $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'price' => ['required', 'decimal', 'min:0.5'],
-            'departement_id' => ['required', 'integer', 'exists:departements,id'],
+            'price' => ['required', 'numeric', 'min:0.5'],
+            'category' => ['required', 'string'],
             'hasDiscount' => ['nullable', 'boolean'],
-            'isAvailable' => ['required', 'boolean'],
+            'quantityInitiale' => ['required', 'integer', 'min:1'],
+            'quantitySales' => ['required', 'integer', 'min:0'],
+            'quantityAvailable' => ['required', 'integer', 'min:0'],
         ]);
-
-        $product = Product::create($validated_data);
-
-        return response()->json([
-            'message' => 'Product created successfully!',
-            'product' => $product,
-        ], 201);
+    
+        try {
+            $product = Product::create($validated_data);
+            return response()->json([
+                'message' => 'Product created successfully!',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create product.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
