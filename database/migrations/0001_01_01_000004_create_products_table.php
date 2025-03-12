@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price');
-            $table->foreignId('departments_id')->constrained('departments')->onDelete('cascade');
+            $table->string('category');
             $table->boolean('hasDiscount')->default(false);
             $table->integer('quantityInitiale');
             $table->integer('quantitySales');
