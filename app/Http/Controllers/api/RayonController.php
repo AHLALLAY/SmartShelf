@@ -34,6 +34,7 @@ class RayonController extends Controller
             ], 500);
         }
     }
+
     public function updateRayon(Request $request, $id)
     {
         try {
@@ -64,6 +65,35 @@ class RayonController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "message" => "An unexpected error occurred",
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteRayon(Request $request, $id){
+        try{
+            $rayon = Rayon::find($id);
+
+            if(!$rayon){
+                return response()->json([
+                    "message" => "<@*@> Rayon not found !!"
+                ], 404);
+            }
+    
+            $result = $rayon->delete();
+    
+            if($result){
+                return response()->json([
+                    "message" => "<*-*> Rayon has been deleted with successfully !!"
+                ], 200);
+            }else{
+                return response()->json([
+                    "message" => "<!-!> Failed to delete Rayon"
+                ], 500);
+            }
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => "<@_@> Unexpected Error",
                 "error" => $e->getMessage()
             ], 500);
         }
