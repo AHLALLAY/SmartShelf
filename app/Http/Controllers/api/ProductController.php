@@ -152,48 +152,47 @@ class ProductController extends Controller
     }
 
     public function search(Request $request)
-{
-    try {
-        // Valider les paramètres de la requête
-        $validated_data = $request->validate([
-            'name' => ['nullable', 'string', 'max:50'], 
-            'category' => ['nullable', 'string', 'max:50'],
-        ]);
+    {
+        try {
+            // Valider les paramètres de la requête
+            $validated_data = $request->validate([
+                'name' => ['nullable', 'string', 'max:50'],
+                'category' => ['nullable', 'string', 'max:50'],
+            ]);
 
-        // Commencer la requête de recherche
-        $query = Product::query();
+            // Commencer la requête de recherche
+            $query = Product::query();
 
-        // Filtrer par nom si le paramètre est fourni
-        if ($request->has('name') && !empty($validated_data['name'])) {
-            $query->where('name', 'LIKE', '%' . $validated_data['name'] . '%');
-        }
+            // Filtrer par nom si le paramètre est fourni
+            if ($request->has('name') && !empty($validated_data['name'])) {
+                $query->where('name', 'LIKE', '%' . $validated_data['name'] . '%');
+            }
 
-        // Filtrer par catégorie si le paramètre est fourni
-        if ($request->has('category') && !empty($validated_data['category'])) {
-            $query->where('category', 'LIKE', '%' . $validated_data['category'] . '%');
-        }
+            // Filtrer par catégorie si le paramètre est fourni
+            if ($request->has('category') && !empty($validated_data['category'])) {
+                $query->where('category', 'LIKE', '%' . $validated_data['category'] . '%');
+            }
 
-        // Exécuter la requête et récupérer les résultats
-        $products = $query->get();
+            // Exécuter la requête et récupérer les résultats
+            $products = $query->get();
 
-        // Vérifier si des produits ont été trouvés
-        if ($products->isEmpty()) {
+            // Vérifier si des produits ont été trouvés
+            if ($products->isEmpty()) {
+                return response()->json([
+                    "message" => "no product found with this name or category"
+                ], 404);
+            }
+
+            // Retourner les produits trouvés
             return response()->json([
-                "message" => "no product found with this name or category"
-            ], 404);
+                "data" => $products
+            ], 200);
+        } catch (\Exception $e) {
+            // Gestion des erreurs inattendues
+            return response()->json([
+                "message" => "Une erreur inattendue s'est produite.",
+                "error" => $e->getMessage()
+            ], 500);
         }
-
-        // Retourner les produits trouvés
-        return response()->json([
-            "data" => $products
-        ], 200);
-
-    } catch (\Exception $e) {
-        // Gestion des erreurs inattendues
-        return response()->json([
-            "message" => "Une erreur inattendue s'est produite.",
-            "error" => $e->getMessage()
-        ], 500);
     }
-}
 }
