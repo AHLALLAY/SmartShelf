@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2);
-            $table->string('category');
+            $table->foreignId('category_id')->constrained('rayon')->onDelete('cascade');
             $table->boolean('hasDiscount')->default(false);
             $table->integer('quantityInitiale');
             $table->integer('quantitySales')->default(0);
