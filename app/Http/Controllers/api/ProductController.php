@@ -34,6 +34,60 @@ class ProductController extends Controller
         }
     }
 
+    public function updateProduct(Request $request, $id)
+    {
+        try {
+            $validated_data = $request->validate([
+                'name' => ['required', 'string', 'max:50'],
+                'price' => ['required', 'numeric', 'min:0.5'],
+                'category_id' => ['required', 'integer', 'min:1'],
+                'hasDiscount' => ['nullable', 'boolean'],
+                'quantityInitiale' => ['required', 'integer', 'min:1'],
+                'quantitySales' => ['required', 'integer', 'min:0'],
+                'quantityAvailable' => ['required', 'integer', 'min:0'],
+            ]);
+
+            $product = Product::find($id);
+
+            if (!$product) {
+                return response()->json([
+                    "message" => "Rayon not found !!"
+                ], 404);
+            }
+
+            $product->name = $validated_data['name'];
+            $product->price = $validated_data['price'];
+            $product->category_id = $validated_data['category_id'];
+            $product->hasDiscount = $validated_data['hasDiscount'] ?? false;
+            $product->quantityInitiale = $validated_data['quantityInitiale'];
+            $product->quantitySales = $validated_data['quantitySales'];
+            $product->quantityAvailable = $validated_data['quantityAvailable'];
+
+            if ($product->quantityAvailable !== ($product->quantityInitiale - $product->quantitySales)) {
+                return response()->json([
+                    "message" => "Inconsistent quantities: quantityAvailable must be equal to quantityInitiale - quantitySales"
+                ], 400);
+            }
+
+            $result = $product->save();
+
+            if ($result) {
+                return response()->json([
+                    "message" => "Product updated successfully"
+                ], 200);
+            } else {
+                return response()->json([
+                    "message" => "Failed to update Product"
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => "An unexpected error occurred",
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function displayProductAvailable()
     {
         try {
