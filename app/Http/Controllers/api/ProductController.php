@@ -88,28 +88,29 @@ class ProductController extends Controller
         }
     }
 
-    public function deleteProduct(Request $request, $id){
-        try{
+    public function deleteProduct(Request $request, $id)
+    {
+        try {
             $product = Product::find($id);
 
-            if(!$product){
+            if (!$product) {
                 return response()->json([
                     "message" => "<@*@> product not found !!"
                 ], 404);
             }
-    
+
             $result = $product->delete();
-    
-            if($result){
+
+            if ($result) {
                 return response()->json([
                     "message" => "<*-*> product has been deleted with successfully !!"
                 ], 200);
-            }else{
+            } else {
                 return response()->json([
                     "message" => "<!-!> Failed to delete product"
                 ], 500);
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 "message" => "<@_@> Unexpected Error",
                 "error" => $e->getMessage()
@@ -258,4 +259,34 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
+    public function checkStock()
+    {
+        $availableProduct = Product::orderBy('quantityAvailable', 'asc')->get();
+        $critiqueProducts = [];
+        $outOfStockProducts = [];
+
+        if ($availableProduct->isNotEmpty()) {
+            foreach ($availableProduct as $product) {
+                if ($product->quantityAvailable <= 5 && $product->quantityAvailable >= 1) {
+                    $critiqueProducts[] = $product;
+                } elseif ($product->quantityAvailable === 0) {
+                    $outOfStockProducts[] = $product;
+                }
+            }
+        } else {
+            return response()->json([
+                "message" => "No products found in the database."
+            ], 404);
+        }
+
+        return response()->json([
+            "data" => [
+                "critique" => $critiqueProducts,
+                "outOfStock" => $outOfStockProducts
+            ]
+        ], 200);
+    }
+
+    
 }

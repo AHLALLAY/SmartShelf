@@ -26,3 +26,6 @@ Route::get('/products/search', [ProductController::class, 'search']);
 Route::post('/rayon/create', [RayonController::class, 'makeRayon']);
 Route::post('/rayon/update/{id}', [RayonController::class, 'updateRayon']);
 Route::post('/rayon/delete/{id}', [RayonController::class, 'deleteRayon']);
+
+
+Route::get('/stock', [ProductController::class, 'checkStock']);
