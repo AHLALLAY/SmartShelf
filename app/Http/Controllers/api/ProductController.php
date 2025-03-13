@@ -88,6 +88,35 @@ class ProductController extends Controller
         }
     }
 
+    public function deleteProduct(Request $request, $id){
+        try{
+            $product = Product::find($id);
+
+            if(!$product){
+                return response()->json([
+                    "message" => "<@*@> product not found !!"
+                ], 404);
+            }
+    
+            $result = $product->delete();
+    
+            if($result){
+                return response()->json([
+                    "message" => "<*-*> product has been deleted with successfully !!"
+                ], 200);
+            }else{
+                return response()->json([
+                    "message" => "<!-!> Failed to delete product"
+                ], 500);
+            }
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => "<@_@> Unexpected Error",
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function displayProductAvailable()
     {
         try {
