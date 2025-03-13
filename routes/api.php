@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\RayonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ Route::post('/product/sale/{id}', [ProductController::class, 'saleProduct']);
 Route::get('/product/display/populare', [ProductController::class, 'displayProductPopulare'])->name('populare.product');
 Route::get('/product/display/promotion', [ProductController::class, 'displayProductPromo'])->name('promotion.product');
 Route::get('/products/search', [ProductController::class, 'search'])->name('search.product');
+
+
+Route::post('/rayon/create', [RayonController::class, 'makeRayon']);
