@@ -22,3 +22,4 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('sear
 
 
 Route::post('/rayon/create', [RayonController::class, 'makeRayon']);
+Route::post('/rayon/update/{id}', [RayonController::class, 'updateRayon']);

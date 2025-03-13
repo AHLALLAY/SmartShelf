@@ -34,4 +34,38 @@ class RayonController extends Controller
             ], 500);
         }
     }
+    public function updateRayon(Request $request, $id)
+    {
+        try {
+            $validated_data = $request->validate([
+                'category' => ['required', 'string', 'max:30']
+            ]);
+
+            $rayon = Rayon::find($id);
+
+            if (!$rayon) {
+                return response()->json([
+                    "message" => "Rayon not found !!"
+                ], 404);
+            }
+
+            $rayon->category = $validated_data['category'];
+            $result = $rayon->save();
+
+            if ($result) {
+                return response()->json([
+                    "message" => "Rayon updated successfully"
+                ], 200);
+            } else {
+                return response()->json([
+                    "message" => "Failed to update Rayon"
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                "message" => "An unexpected error occurred",
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
 }
