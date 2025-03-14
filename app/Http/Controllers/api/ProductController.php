@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Mail\CriticalStock;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -280,11 +282,24 @@ class ProductController extends Controller
             ], 404);
         }
 
+        $emailData = [
+            'critiqueProducts' => $critiqueProducts,
+            'outOfStockProducts' => $outOfStockProducts,
+        ];
+
+        if (!empty($critiqueProducts) || !empty($outOfStockProducts)) {
+            Mail::to('abderrahmanahlalay76@gmail.com')->send(new CriticalStock($emailData));
+            $message = "Critical stock email sent successfully.";
+        } else {
+            $message = "No critical or out-of-stock products found. Email not sent.";
+        }
+
         return response()->json([
             "data" => [
                 "critique" => $critiqueProducts,
                 "outOfStock" => $outOfStockProducts
-            ]
+            ],
+            "message" => $message
         ], 200);
     }
 
