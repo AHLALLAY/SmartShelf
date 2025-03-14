@@ -81,6 +81,15 @@ return [
                 'log',
             ],
         ],
+        'mailers' => [
+
+            // start mailtrap transport
+            'mailtrap' => [
+                'transport' => 'mailtrap'
+            ],
+            // end mailtrap transport
+
+        ]
 
     ],
 
