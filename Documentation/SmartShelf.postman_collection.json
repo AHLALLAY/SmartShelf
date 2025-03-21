@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "2a848c11-ddca-442a-83f3-ddbe9d9f735a",
+		"name": "SmartShelf",
+		"description": "Développement d'une API REST pour la gestion des rayons d’un supermarché, permettant une gestion efficace des stocks et des produits en utilisant Laravel.\n\nL'objectif principal de ce projet est de développer une API REST pour gérer les rayons d’un supermarché. Chaque rayon contiendra plusieurs produits, avec une gestion des stocks et une mise à jour des quantités en temps réel.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39776448"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login request",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohamed@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/login"
+					},
+					"response": []
+				},
+				{
+					"name": "registre request",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"samir\",\r\n    \"email\": \"samir@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"roles\": \"client\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "search by category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/products/search?category_id=1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search by name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/products/search?name=lait",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "lait"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search by both",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/products/search?category=Cyclisme",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Cyclisme"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Display Po",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/product/display/populare"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/product/display/available",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/product/display/available"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/product/display/promotion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/product/display/promotion"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8000/api/product/sale/2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/product/sale/2"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/stock",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/stock"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/product/create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"bimo\",\r\n    \"price\": 1.0,\r\n    \"category_id\":1,\r\n    \"hasDiscount\": false,\r\n    \"quantityInitiale\": 10,\r\n    \"quantitySales\": 10,\r\n    \"quantityAvailable\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/product/create",
+						"description": "pour afficher les produits disponible"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/rayon/create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Elecronique\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/rayon/create"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/rayon/delete/2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/rayon/delete/2"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/pruduct/update/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"nido\",\r\n    \"price\": 50.0,\r\n    \"category_id\":1,\r\n    \"hasDiscount\": true,\r\n    \"quantityInitiale\": 5,\r\n    \"quantitySales\": 1,\r\n    \"quantityAvailable\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/pruduct/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/rayon/update/3",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Eléctronique\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/rayon/update/3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/pruduct/delete/1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/pruduct/delete/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
