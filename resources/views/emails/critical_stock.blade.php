@@ -13,7 +13,7 @@
                 
                 @if (!empty($critiqueProducts))
                     <div style="margin-bottom: 24px; background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px;">
-                        <h2 style="color: #b45309; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Produits en stock critique :</h2>
+                        <h2 style="color: #b45309; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Critical Stock Produits :</h2>
                         <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                             @foreach ($critiqueProducts as $product)
                                 <tr style="border-bottom: 1px solid #fef3c7;">
@@ -27,7 +27,7 @@
 
                 @if (!empty($outOfStockProducts))
                     <div style="background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 4px;">
-                        <h2 style="color: #b91c1c; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Produits en rupture de stock :</h2>
+                        <h2 style="color: #b91c1c; font-size: 18px; margin-top: 0; margin-bottom: 12px;">Out of stock Produits :</h2>
                         <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                             @foreach ($outOfStockProducts as $product)
                                 <tr style="border-bottom: 1px solid #fecaca;">
